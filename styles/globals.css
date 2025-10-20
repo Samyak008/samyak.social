@@ -3,144 +3,275 @@
 @tailwind utilities;
 
 @layer base {
-  :root{
+  :root {
     --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial;
-    --bg: #0b1115;
-    --surface: #0f161b;
-    --muted: #9aa6b2;
-    --text: #e6f0f8;
-    --accent: #60a5fa;
-    --glass: rgba(255,255,255,0.03);
-    --border: rgba(255,255,255,0.04);
-    --vignette: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
-    --cursor-opacity: 0.9;
-    --cursor-x: 50%;
-    --cursor-y: 50%;
+    --bg: #000000;
+    --surface: #0a0a0a;
+    --muted: #888888;
+    --text: #00ff00;
+    --accent: #00ff00;
+    --green: #00ff00;
+    --border: #00ff00;
   }
 
-  html,body{
+  html, body {
     font-family: var(--font);
     margin: 0;
     padding: 0;
     background-color: var(--bg);
-    background-image:
-      radial-gradient(1000px 600px at 8% 8%, rgba(255,255,255,0.015), transparent 12%),
-      linear-gradient(180deg, var(--bg) 0%, #060709 60%),
-      url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='1.5' fill='%23ffffff' opacity='0.8'/%3E%3Ccircle cx='50' cy='20' r='1' fill='%23ffffff' opacity='0.7'/%3E%3Ccircle cx='80' cy='40' r='1.2' fill='%23ffffff' opacity='0.75'/%3E%3Ccircle cx='20' cy='70' r='1' fill='%23ffffff' opacity='0.65'/%3E%3Ccircle cx='70' cy='85' r='1.1' fill='%23ffffff' opacity='0.8'/%3E%3Ccircle cx='40' cy='50' r='0.8' fill='%23ffffff' opacity='0.6'/%3E%3C/svg%3E");
-    background-size:
-      100% 100%,
-      100% 100%,
-      150px 150px;
-    background-position:
-      0 0,
-      0 0,
-      0 0;
-    background-repeat: repeat;
-    background-attachment: fixed;
     color: var(--text);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    min-height: 100%;
+    min-height: 100vh;
   }
 
-  /* subtle vignette over everything */
-  body::after{
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background: var(--vignette);
-    mix-blend-mode: multiply;
-    z-index: 1;
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Layout structure */
+  .layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .main-content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 280px;
+  }
+
+  .main-content {
+    flex: 1;
+    padding: 3rem 4rem;
+    max-width: 1400px;
+  }
+
+  .content-footer {
+    padding: 2rem 4rem;
+    font-size: 0.875rem;
     opacity: 0.6;
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
   }
 
-  *{ box-sizing: border-box; }
-  .container { max-width: 72rem; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem; position: relative; z-index: 2; }
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    background: var(--bg);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    z-index: 40;
+  }
 
-  :focus { outline: 2px solid rgba(96,165,250,0.18); outline-offset: 2px; }
-}
+  .sidebar-content {
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
 
-/* components */
-@layer components {
-  nav.site-nav {
+  .sidebar-brand {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+  }
+
+  .brand-link {
+    text-decoration: none;
+  }
+
+  .sidebar-brand h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--green);
+    margin: 0;
+  }
+
+  .sidebar-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sidebar-heading {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .social-link:hover {
+    color: var(--green);
+  }
+
+  .social-icon {
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+  }
+
+  .text-muted-small {
+    font-size: 0.875rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Top Navigation */
+  .top-nav {
     position: sticky;
     top: 0;
-    z-index: 40;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    z-index: 30;
+    background: var(--bg);
     border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(8px);
+    padding: 1.5rem 4rem;
   }
 
-  .nav-inner {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:1rem;
-    padding:0.75rem 0;
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
   }
-
-  .site-brand {
-    font-weight:700;
-    font-size:1.05rem;
-    color:var(--text);
-  }
-
-  .nav-links { display:flex; gap:0.5rem; align-items:center; }
 
   .nav-links a {
     color: var(--muted);
-    padding: 0.45rem 0.75rem;
-    border-radius: 0.45rem;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
-  }
-  .nav-links a.active, .nav-links a:hover {
-    color: var(--text);
-    background: rgba(255,255,255,0.02);
+    letter-spacing: 0.05em;
+    transition: color 150ms ease;
   }
 
-  /* replaced @apply with explicit CSS to avoid unknown utility errors */
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--green);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--green);
+    margin: 0 0 1rem 0;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    line-height: 1.3;
+    font-weight: 600;
+    color: var(--green);
+    margin: 0 0 0.75rem 0;
+  }
+
+  p {
+    line-height: 1.7;
+    color: var(--muted);
+    margin: 0 0 1rem 0;
+  }
+
+  a {
+    color: var(--accent);
+    transition: color 150ms;
+  }
+
+  a:hover {
+    color: var(--text);
+  }
+
+  /* Card component */
   .card {
     display: block;
-    border-radius: 1rem; /* equivalent to rounded-2xl */
-    border: 1px solid rgba(255,255,255,0.04);
-    padding: 1.25rem; /* p-5 */
-    transition: box-shadow 150ms ease, transform 150ms ease;
-    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 150ms ease;
+    text-decoration: none;
   }
 
-  .card:hover { transform: translateY(-4px); box-shadow: 0 14px 38px rgba(2,6,23,0.6); border-color: rgba(255,255,255,0.06); }
-
-  /* subtle cursor-follow overlay (keeps compatibility if CursorLight component used) */
-  :root { --cursor-opacity: 0.9; --cursor-x: 50%; --cursor-y: 50%; }
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 20;
-    mix-blend-mode: screen;
-    opacity: var(--cursor-opacity);
-    background-image:
-      radial-gradient(800px 380px at var(--cursor-x) var(--cursor-y),
-        rgba(96,165,250,0.10),
-        rgba(96,165,250,0.05) 12%,
-        transparent 34%);
-    transition: opacity 220ms linear;
+  .card:hover {
+    border-color: var(--green);
+    transform: translateX(4px);
   }
-  body[data-cursor="inactive"]::before { opacity: 0; }
 
-  .cursor-canvas {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 20;
-    mix-blend-mode: screen;
-    transition: opacity 320ms ease;
-    opacity: 1;
-    will-change: transform, opacity;
-    background: transparent;
+  .card h2 {
+    margin-bottom: 0.5rem;
   }
+
+  .card p {
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .sidebar {
+      width: 240px;
+    }
+    .main-content-wrapper {
+      margin-left: 240px;
+    }
+    .main-content,
+    .top-nav,
+    .content-footer {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .layout-wrapper {
+      flex-direction: column;
+    }
+    .sidebar {
+      position: relative;
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .main-content-wrapper {
+      margin-left: 0;
+    }
+    .main-content,
+    .top-nav,
+    .content-footer {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    .nav-links {
+      gap: 1rem;
+    }
+  }
+}
+
+/* Cursor light canvas */
+.cursor-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  mix-blend-mode: screen;
 }

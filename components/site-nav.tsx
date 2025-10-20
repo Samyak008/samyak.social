@@ -4,10 +4,10 @@ import { usePathname } from "next/navigation";
 
 const tabs = [
   { href: "/home", label: "ABOUT" },
-  { href: "/blog", label: "VLOGS" },
+  { href: "/blog", label: "BLOGS" },
   { href: "/work", label: "WORK" },
   { href: "/gallery", label: "DOCSHELF" },
-];
+] as const;
 
 export default function SiteNav() {
   const pathname = usePathname();
@@ -20,7 +20,7 @@ export default function SiteNav() {
           return (
             <Link
               key={t.href}
-              href={t.href}
+              href={t.href as any}
               className={active ? "active" : ""}
             >
               {t.label}

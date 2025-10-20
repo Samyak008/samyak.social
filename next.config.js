@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   // Remove typedRoutes to fix the build error
   async redirects() {
     return [

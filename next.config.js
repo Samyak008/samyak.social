@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: { typedRoutes: true },
+  // Remove typedRoutes to fix the build error
   async redirects() {
     return [
       {

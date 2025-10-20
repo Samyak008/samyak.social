@@ -20,7 +20,7 @@ export default function SiteNav() {
           return (
             <Link
               key={t.href}
-              href={t.href as any}
+              href={t.href}
               className={active ? "active" : ""}
             >
               {t.label}

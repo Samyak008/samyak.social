@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
+import { FaYoutube, FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
 
 const socialLinks = [
-  { name: "YouTube", url: "https://www.youtube.com/@Samyak008", icon: "▶" },
-  { name: "Linkedin", url: "https://www.linkedin.com/in/s08varia/", icon: "📚" },
-  { name: "Twitter", url: "https://x.com/Hathimeresaathi", icon: "𝕏" },
-  { name: "GitHub", url: "https://github.com/Samyak008", icon: "⚙" },
-];  
+  { name: "YouTube", url: "https://www.youtube.com/@Samyak008", icon: <FaYoutube /> },
+  { name: "Linkedin", url: "https://www.linkedin.com/in/s08varia/", icon: <FaLinkedin /> },
+  { name: "Twitter", url: "https://x.com/Hathimeresaathi", icon: <FaTwitter /> },
+  { name: "GitHub", url: "https://github.com/Samyak008", icon: <FaGithub /> },
+];
 
 export default function Sidebar() {
   return (
@@ -15,7 +16,7 @@ export default function Sidebar() {
         {/* Brand */}
         <div className="sidebar-brand">
           <Link href="/home" className="brand-link">
-            <h2>samyak.social</h2>
+            <h2>HOME</h2>
           </Link>
         </div>
 

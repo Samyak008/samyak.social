@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const tabs = [
-  { href: "/home", label: "ABOUT" },
+  { href: "/about", label: "ABOUT" },
   { href: "/blog", label: "BLOGS" },
   { href: "/work", label: "WORK" },
   { href: "/gallery", label: "DOCSHELF" },
@@ -16,7 +16,7 @@ export default function SiteNav() {
     <nav className="top-nav">
       <div className="nav-links">
         {tabs.map((t) => {
-          const active = pathname === t.href || (t.href === "/home" && pathname === "/");
+          const active = pathname === t.href;
           return (
             <Link
               key={t.href}

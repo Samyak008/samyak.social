@@ -2,11 +2,7 @@ export default function HomePage() {
   return (
     <section className="space-y-6">
       <header className="space-y-2">
-        <h1 className="text-3xl font-bold">Hey, I’m Samyak 👋</h1>
-        <p className="text-muted">
-          I write about AI, systems, and side projects. This is my hybrid blog +
-          portfolio.
-        </p>
+        <h1 className="text-3xl font-bold">Hey, I’m Samyak</h1>
       </header>
 
       <div className="grid gap-6 md:grid-cols-2">

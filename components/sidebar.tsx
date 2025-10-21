@@ -42,7 +42,6 @@ export default function Sidebar() {
         {/* Tags - Will be populated from blog posts */}
         <div className="sidebar-section">
           <h3 className="sidebar-heading">TAGS</h3>
-          <p className="text-muted-small">Tags will appear here as you add blog posts</p>
         </div>
       </div>
     </aside>

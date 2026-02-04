@@ -1,7 +1,8 @@
 ---
-title: ONE DAY, DAY ONE
-date: 2026-02-03
-----
+title: One Day, Day One
+date: 2025-02-03
+---
+
 If you ever feel like giving up on your dreams, remember this: ONE DAY, DAY ONE.
 
 My journey started right after I left my second internship. I was determined that I would be the 1st person in my circle to crack an on-campus placement. My parents had high hopes, and I was ready to make them proud. They even supported me to leave my internship early so I could focus on my placements.

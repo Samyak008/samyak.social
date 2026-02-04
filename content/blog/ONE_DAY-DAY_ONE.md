@@ -1,6 +1,6 @@
 ---
 title: One Day, Day One
-date: 2025-02-03
+date: 2026-02-03
 ---
 
 If you ever feel like giving up on your dreams, remember this: ONE DAY, DAY ONE.

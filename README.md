@@ -35,7 +35,7 @@ Check DNS records:
 
 nslookup samyak.social
 
-Check HTTP response (PowerShell):
+Check HTTP response (PowerShell)::
 
 Invoke-WebRequest -Uri http://samyak.social -UseBasicParsing
 

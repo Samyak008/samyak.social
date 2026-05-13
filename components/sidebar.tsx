@@ -9,13 +9,17 @@ const socialLinks = [
   { name: "GitHub", url: "https://github.com/Samyak008", icon: <FaGithub /> },
 ];
 
-export default function Sidebar() {
+type SidebarProps = {
+  onNavigate?: () => void;
+};
+
+export default function Sidebar({ onNavigate }: SidebarProps) {
   return (
-    <aside className="sidebar">
+    <aside className="sidebar" id="site-sidebar">
       <div className="sidebar-content">
         {/* Brand */}
         <div className="sidebar-brand">
-          <Link href="/home" className="brand-link">
+          <Link href="/home" className="brand-link" onClick={onNavigate}>
             <h2>HOME</h2>
           </Link>
         </div>
@@ -31,6 +35,7 @@ export default function Sidebar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
+                onClick={onNavigate}
               >
                 <span className="social-icon">{link.icon}</span>
                 <span>{link.name}</span>

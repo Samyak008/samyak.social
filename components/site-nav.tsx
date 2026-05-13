@@ -9,24 +9,45 @@ const tabs = [
   { href: "/gallery", label: "DOCSHELF" },
 ] as const;
 
-export default function SiteNav() {
+type SiteNavProps = {
+  sidebarOpen: boolean;
+  onToggleSidebar: () => void;
+};
+
+export default function SiteNav({ sidebarOpen, onToggleSidebar }: SiteNavProps) {
   const pathname = usePathname();
-  
+
   return (
     <nav className="top-nav">
-      <div className="nav-links">
-        {tabs.map((t) => {
-          const active = pathname === t.href;
-          return (
-            <Link
-              key={t.href}
-              href={t.href}
-              className={active ? "active" : ""}
-            >
-              {t.label}
-            </Link>
-          );
-        })}
+      <div className="nav-inner">
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-label="Toggle sidebar"
+          aria-controls="site-sidebar"
+          aria-expanded={sidebarOpen}
+          onClick={onToggleSidebar}
+        >
+          <span className="nav-toggle-bars" aria-hidden="true">
+            <span className="nav-toggle-bar" />
+            <span className="nav-toggle-bar" />
+            <span className="nav-toggle-bar" />
+          </span>
+        </button>
+        <div className="nav-links">
+          {tabs.map((t) => {
+            const active = pathname === t.href;
+            return (
+              <Link
+                key={t.href}
+                href={t.href}
+                className={active ? "active" : ""}
+              >
+                {t.label}
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </nav>
   );
